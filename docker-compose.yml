@@ -7,14 +7,18 @@ services:
       - ./tmp/db:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
+    ports:
+      - '3306:3306'
   app:
     build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command:
+      - bin/start_server.sh
     volumes:
       - .:/usr/src/app
     environment:
       RAILS_DB_HOST: db
+      RAILS_LOG_TO_STDOUT: 'true'
     ports:
-      - "3000:3000"
+      - '3000:3000'
     depends_on:
       - db
