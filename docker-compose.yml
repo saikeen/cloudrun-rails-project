@@ -1,7 +1,9 @@
 version: '3'
 services:
   db:
-    image: mysql:8.0
+    build:
+      context: .
+      dockerfile: ./containers/db/Dockerfile
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --ft_min_word_len=1 --default-authentication-plugin=mysql_native_password
     volumes:
       - ./tmp/db:/var/lib/mysql
@@ -10,12 +12,15 @@ services:
     ports:
       - '3306:3306'
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: ./containers/app/Dockerfile
     command:
       - bin/start_server.sh
     volumes:
       - .:/usr/src/app
     environment:
+      RAILS_ENV: prod
       RAILS_DB_HOST: db
       RAILS_LOG_TO_STDOUT: 'true'
     ports:
