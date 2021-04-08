@@ -1,0 +1,9 @@
+variable "sys_name" {}
+variable "env" {}
+variable "region" {}
+variable "db_user_pass" {}
+variable "db_host" {}
+variable "db_conn_name" {}
+variable "sva_conn_name" {}
+variable "app_memory" {}
+variable "app_cpu" {}
