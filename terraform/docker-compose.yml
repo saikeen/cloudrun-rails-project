@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   terraform:
     build: .
@@ -7,5 +7,4 @@ services:
     working_dir: /terraform/environments
     entrypoint: sh
     environment:
-      GOOGLE_CLOUD_KEYFILE_JSON: ${GOOGLE_CLOUD_KEYFILE_JSON}
       GOOGLE_APPLICATION_CREDENTIALS: ${GOOGLE_APPLICATION_CREDENTIALS}

@@ -5,7 +5,8 @@ provider "google" {
 
 terraform {
   backend "gcs" {
-    bucket = "sample-prod-tfstate"
+    bucket = "rails-cloudrun-sample-tfstate"
+    prefix = "env/prod"
   }
 }
 
