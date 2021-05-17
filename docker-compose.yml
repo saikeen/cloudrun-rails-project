@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   db:
     build:
@@ -10,7 +10,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
     ports:
-      - '3306:3306'
+      - "3306:3306"
   app:
     build:
       context: .
@@ -22,8 +22,12 @@ services:
     environment:
       RAILS_ENV: prod
       RAILS_DB_HOST: db
-      RAILS_LOG_TO_STDOUT: 'true'
+      RAILS_LOG_TO_STDOUT: "true"
+      RAILS_SERVE_STATIC_FILES: "true"
+      HOST: localhost
+      SMTP_USER_NAME: $SMTP_USER_NAME
+      SMTP_PASSWORD: $SMTP_PASSWORD
     ports:
-      - '3000:3000'
+      - "3000:3000"
     depends_on:
       - db
