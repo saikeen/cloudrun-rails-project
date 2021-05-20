@@ -16,17 +16,20 @@ services:
       context: .
       dockerfile: ./containers/app/Dockerfile
     command:
-      - bin/start_server.sh
+      - bin/start_dev_server.sh
+      # - bin/start_server.sh
     volumes:
       - .:/usr/src/app
     environment:
-      RAILS_ENV: prod
+      # RAILS_ENV: prod
       RAILS_DB_HOST: db
-      RAILS_LOG_TO_STDOUT: "true"
-      RAILS_SERVE_STATIC_FILES: "true"
+      # RAILS_LOG_TO_STDOUT: "true"
+      # RAILS_SERVE_STATIC_FILES: "true"
       HOST: localhost
       SMTP_USER_NAME: $SMTP_USER_NAME
       SMTP_PASSWORD: $SMTP_PASSWORD
+      GOOGLE_CLIENT_ID: $GOOGLE_CLIENT_ID
+      GOOGLE_CLIENT_SECRET: $GOOGLE_CLIENT_SECRET
     ports:
       - "3000:3000"
     depends_on:
