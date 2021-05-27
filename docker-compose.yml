@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   db:
     build:
@@ -10,20 +10,19 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
     ports:
-      - '3306:3306'
+      - "3306:3306"
   app:
     build:
       context: .
       dockerfile: ./containers/app/Dockerfile
     command:
-      - bin/start_server.sh
+      - bin/start_dev_server.sh
     volumes:
       - .:/usr/src/app
     environment:
-      RAILS_ENV: prod
       RAILS_DB_HOST: db
-      RAILS_LOG_TO_STDOUT: 'true'
+      RAILS_LOG_TO_STDOUT: "true"
     ports:
-      - '3000:3000'
+      - "3000:3000"
     depends_on:
       - db
