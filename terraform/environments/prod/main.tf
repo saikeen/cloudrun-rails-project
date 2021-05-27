@@ -5,7 +5,8 @@ provider "google" {
 
 terraform {
   backend "gcs" {
-    bucket = "sample-prod-tfstate"
+    bucket = "rails-cloudrun-sample-tfstate"
+    prefix = "env/prod"
   }
 }
 
@@ -47,4 +48,12 @@ module "cloudrun" {
   db_host       = module.sql.db_host
   db_conn_name  = module.sql.db_conn_name
   sva_conn_name = module.vpc.sva_conn_name
+}
+
+module "lb" {
+  source   = "../../module/lb"
+  sys_name = var.sys_name
+  env      = var.env
+  region   = var.region
+  app_name = module.cloudrun.name
 }
